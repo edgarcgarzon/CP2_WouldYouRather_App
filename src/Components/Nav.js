@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import { Link, withRouter } from "react-router-dom";
 import compose from 'recompose/compose'
@@ -9,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { UnsetAuthedUser } from '../actions/authedUser';
 
 
 
@@ -32,19 +34,17 @@ class Nav extends Component {
       }
 
     handleLogin = (event) => {
-        //TODO: implement
+        this.props.history.push(`/login`)
     };
 
     handleLogout = (event) => {
-        //TODO: implement
+        this.props.dispatch(UnsetAuthedUser())
+        this.props.history.push('/login')
     };
-
-    handleTabChange = (e, value) =>{
-        this.setState({tab:value})
-    }
 
     render() {
         const { authedUser } = this.props
+        const disabledTab = (this.props.authedUser === null )
 
         return (
             <div className={this.props.classes.root}>
@@ -59,21 +59,22 @@ class Nav extends Component {
                                     {`Hello, ${authedUser.name}`}
                                 </Typography>
                                 <Avatar alt={`${authedUser.name}`} src={`${authedUser.avatarURL}`} style={{ marginRight: 12 }} />
-                                <Button color="inherit" onClick={this.handleLogin}>Logout</Button>
+                                <Button color="inherit" onClick={this.handleLogout}>Logout</Button>
                             </div>)
-                            : (<Button color="inherit" onClick={this.handleLogout}>Login</Button>)
+                            : (<Button color="inherit" onClick={this.handleLogin}>Login</Button>)
                         }
                     </Toolbar>
                 </AppBar>
                 <Tabs
-                    value={this.props.location.pathname}
+                    value={this.props.authedUser === null? false : this.props.location.pathname}
+                    disabled={true}
                     indicatorColor="primary"
                     textColor="primary"
                     centered
                 >
-                    <Tab label="Home" component={Link} to="/" value="/"/>
-                    <Tab label="New Question" component={Link} to="/newquestion" value="/newquestion"/>
-                    <Tab label="Leaderboard" component={Link} to="/leaderboard" value="/leaderboard"/>
+                    <Tab label="Home" component={Link} to="/" value="/" disabled={disabledTab}/>
+                    <Tab label="New Question" component={Link} to="/newquestion" value="/newquestion" disabled={disabledTab}/>
+                    <Tab label="Leaderboard" component={Link} to="/leaderboard" value="/leaderboard" disabled={disabledTab}/>
                 </Tabs>
             </div>
         )
@@ -81,5 +82,6 @@ class Nav extends Component {
 }
 
 export default compose(
+    connect(),
     withStyles(useStyles),
 )(withRouter(Nav))

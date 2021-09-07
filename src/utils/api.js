@@ -14,3 +14,17 @@ export function getInitialData () {
     questions,
   }))
 }
+
+//simulate an API log-in service
+export function logIn(id){
+  return new Promise((res, rej) =>{
+    setTimeout(() => res(id), 1000)
+  })
+}
+
+//simulate an API log-out service
+export function logOut(id){
+  return new Promise((res, rej) =>{
+    setTimeout(()=> res(id), 1000)
+  })
+}

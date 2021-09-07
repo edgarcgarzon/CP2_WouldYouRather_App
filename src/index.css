@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.login-form
+{
+  justify-content: center;
+  min-height: 35vh;
+}
+
+.button-block{
+  width: 100%;
+}
+
+.login-background
+{
+  justify-content: center;
+  min-height: 20vh;
+  padding: 50px;
+}
