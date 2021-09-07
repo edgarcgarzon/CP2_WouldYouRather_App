@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/share';
 import Home from './Home'
 import Question from './Question'
 import Board from './Board'
 import Nav from './Nav'
+import NewQuestion from './NewQuestion';
 
 class App extends Component {
 
@@ -21,12 +22,13 @@ class App extends Component {
 
     return (
       <Router>
-      <Nav authedUser={authedUser}/>
-      <div>
-        <Route path='/' exact Component ={Home}/>
-        <Route path='/questions/:id' exact Component ={Question}/>
-        <Route path='/leaderboard' exact Component ={Board}/>
-      </div>
+        <Nav authedUser={authedUser}/>
+        <div>
+          <Route path='/' exact component={Home}/>
+          <Route path='/questions/:id' exact component={Question}/>
+          <Route path='/leaderboard' exact component={Board}/>
+          <Route path='/newquestion' exact component={NewQuestion}/>
+        </div>
       </Router>
     )
   }

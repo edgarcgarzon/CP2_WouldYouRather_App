@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-export class Board extends Component {
+export class NewQuestion extends Component {
     static propTypes = {
         prop: PropTypes
     }
@@ -10,7 +10,7 @@ export class Board extends Component {
     render() {
         return (
             <div>
-               Board
+                New Question
             </div>
         )
     }
@@ -20,4 +20,5 @@ const mapStateToProps = (state) => ({
     
 })
 
-export default connect(mapStateToProps)(Board)
+
+export default connect(mapStateToProps)(NewQuestion)
