@@ -38,12 +38,12 @@ export class Login extends Component {
 
         return (
             <div>
-                <Grid container spacing={0} justify="center" direction="row">
+                <Grid container spacing={0} justifyContent="center" direction="row">
                     <Grid item>
                         <Grid
                             container
                             direction="column"
-                            justify="center"
+                            justifyContent="center"
                             spacing={2}
                             className="login-form"
                         >

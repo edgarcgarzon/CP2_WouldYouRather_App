@@ -21,7 +21,6 @@ export function handleSetAuthedUser(id){
 
 export function handleLogOut(id){
     return (dispatch) =>{
-        console.log("logout")
         logOut(id)
             .then((id)=>{
                 dispatch(logOut())

@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleInitialData } from '../actions/share';
 import Home from './Home'
 import Question from './Question'
@@ -23,8 +23,7 @@ class App extends Component {
   render() {
 
     const {authedUser} = this.props
-    console.log(this.props)
-
+    
     return (
       <Router>
         <Nav authedUser={authedUser}/>
@@ -41,7 +40,6 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return{
     authedUser:state.authedUser !==null? state.users[state.authedUser] : null
 }}

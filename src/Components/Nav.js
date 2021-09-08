@@ -29,17 +29,13 @@ const useStyles = (theme) => ({
 
 class Nav extends Component {
 
-    constructor(props) {
-        super(props);
-      }
-
     handleLogin = (event) => {
-        this.props.history.push(`/login`)
+        this.props.history.push(`/`)
     };
 
     handleLogout = (event) => {
         this.props.dispatch(UnsetAuthedUser())
-        this.props.history.push('/login')
+        this.props.history.push('/')
     };
 
     render() {
