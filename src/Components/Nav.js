@@ -29,6 +29,14 @@ const useStyles = (theme) => ({
 
 class Nav extends Component {
 
+    tabsValues = ['/', '/newquestion', '/leaderboard']
+
+    disableTabs = () => {
+        return (this.props.authedUser === null)
+        ? false 
+        : this.tabsValues.includes(this.props.location.pathnam) ? this.props.location.pathname : false
+    }
+    
     handleLogin = (event) => {
         this.props.history.push(`/`)
     };
@@ -62,7 +70,7 @@ class Nav extends Component {
                     </Toolbar>
                 </AppBar>
                 <Tabs
-                    value={this.props.authedUser === null? false : this.props.location.pathname}
+                    value={this.disableTabs()}
                     disabled={true}
                     indicatorColor="primary"
                     textColor="primary"

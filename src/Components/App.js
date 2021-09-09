@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleInitialData } from '../actions/share';
 import Home from './Home'
 import Question from './Question'
-import Board from './Board'
+import QuestionBoard from './QuestionBoard'
 import Nav from './Nav'
 import NewQuestion from './NewQuestion';
 import Login  from './Login';
@@ -30,7 +30,7 @@ class App extends Component {
         <div>
           <Route path='/' exact component={this.filterComponent(Home)}/>
           <Route path='/questions/:id' exact component={this.filterComponent(Question)}/>
-          <Route path='/leaderboard' exact component={this.filterComponent(Board)}/>
+          <Route path='/leaderboard' exact component={this.filterComponent(QuestionBoard)}/>
           <Route path='/newquestion' exact component={this.filterComponent(NewQuestion)}/>
           <Route component={Login}/>
         </div>

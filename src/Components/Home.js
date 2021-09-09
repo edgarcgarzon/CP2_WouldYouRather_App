@@ -1,18 +1,21 @@
+import { Divider } from '@material-ui/core'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import QuestionBoard from './QuestionBoard'
 
 export class Home extends Component {
     render() {
         return (
             <div>
-                Home
+                <QuestionBoard/>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({
-    
+const mapStateToProps = ({users, questions}) => ({
+    users,
+    questions: Object.values(questions)
 })
 
 export default connect(mapStateToProps)(Home)
