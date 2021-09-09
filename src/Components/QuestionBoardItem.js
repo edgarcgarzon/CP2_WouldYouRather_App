@@ -7,9 +7,7 @@ import {
     CardHeader,
     CardMedia,
     Divider,
-
     Typography,
-
 } from '@material-ui/core';
 
 
