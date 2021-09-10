@@ -31,10 +31,10 @@ class Nav extends Component {
 
     tabsValues = ['/', '/newquestion', '/leaderboard']
 
-    disableTabs = () => {
+    filterTabsName = () => {
         return (this.props.authedUser === null)
         ? false 
-        : this.tabsValues.includes(this.props.location.pathnam) ? this.props.location.pathname : false
+        : this.tabsValues.includes(this.props.location.pathname) ? this.props.location.pathname : false
     }
     
     handleLogin = (event) => {
@@ -70,7 +70,7 @@ class Nav extends Component {
                     </Toolbar>
                 </AppBar>
                 <Tabs
-                    value={this.disableTabs()}
+                    value={this.filterTabsName()}
                     disabled={true}
                     indicatorColor="primary"
                     textColor="primary"
