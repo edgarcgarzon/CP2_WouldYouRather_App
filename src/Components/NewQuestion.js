@@ -14,6 +14,7 @@ import {
   Button
 
 } from '@material-ui/core';
+import { handleAddQuestion } from '../actions/share';
 
 const useStyles = (theme) => ({
   root: {
@@ -45,11 +46,13 @@ export class NewQuestion extends Component {
   }
 
   onSubmit = () => {
-    
+    this.props.dispatch(handleAddQuestion(this.state.optionOne, this.state.optionTwo, this.props.authedUser))
+    this.props.history.push(`/`)
   }
 
   render() {
     const { classes } = this.props
+    const buttonDisable = this.state.optionOne === '' || this.state.optionTwo === ''
 
     return (
       <Grid
@@ -90,7 +93,14 @@ export class NewQuestion extends Component {
                 value={this.state.optionTwo}
                 onChange={(e)=>this.handleOption("optionTwo", e.target.value)}
               />
-              <Button variant="contained" color="primary" fullWidth={true} size={'medium'} style={{ marginTop: 20 }} onClick={this.onSubmit}>
+              <Button 
+                variant="contained" 
+                color="primary" 
+                fullWidth={true} 
+                size={'medium'} 
+                style={{ marginTop: 20 }} 
+                onClick={this.onSubmit}
+                disabled={buttonDisable}>
                 Submit
               </Button>
             </CardContent>
@@ -101,11 +111,11 @@ export class NewQuestion extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = ({authedUser}) => ({
+  authedUser
 })
 
 export default compose(
-  connect(),
+  connect(mapStateToProps),
   withStyles(useStyles),
 )(withRouter(NewQuestion))
