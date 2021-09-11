@@ -9,6 +9,7 @@ import QuestionBoard from './QuestionBoard'
 import Nav from './Nav'
 import NewQuestion from './NewQuestion';
 import Login  from './Login';
+import LeaderBoard from './LeaderBoard';
 
 class App extends Component {
 
@@ -30,7 +31,7 @@ class App extends Component {
         <div>
           <Route path='/' exact component={this.filterComponent(Home)}/>
           <Route path='/questions/:id' exact component={this.filterComponent(Question)}/>
-          <Route path='/leaderboard' exact component={this.filterComponent(QuestionBoard)}/>
+          <Route path='/leaderboard' exact component={this.filterComponent(LeaderBoard)}/>
           <Route path='/newquestion' exact component={this.filterComponent(NewQuestion)}/>
           <Route component={Login}/>
         </div>
