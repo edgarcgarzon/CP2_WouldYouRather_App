@@ -1,7 +1,8 @@
 import { getInitialData } from '../utils/api'
 import { receiveQuestions } from './questions'
 import { receiveUsers } from './users'
-import { formatQuestion, _saveQuestion, _saveQuestionAnswer } from "../utils/_DATA"
+import { _saveQuestion, _saveQuestionAnswer } from "../utils/_DATA"
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const ADD_ANSWER = 'ADD_ANSWER'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -43,11 +44,14 @@ export function addQuestion(question) {
   }
 }
 
-export function handleAddQuestion(optionOneText, optionTwoText, author) {
+export function handleAddQuestion(optionOneText, optionTwoText, author, saveCallback) {
   return (dispatch) => {  
+    dispatch(showLoading())
     return _saveQuestion({ optionOneText, optionTwoText, author })
       .then((question) => {
         dispatch(addQuestion(question))
+        dispatch(hideLoading())
+        saveCallback()
       })
   }
 }

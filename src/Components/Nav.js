@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { UnsetAuthedUser } from '../actions/authedUser';
+import LoadingBar from 'react-redux-loading'
 
 
 
@@ -69,6 +70,7 @@ class Nav extends Component {
                         }
                     </Toolbar>
                 </AppBar>
+                <LoadingBar />
                 <Tabs
                     value={this.filterTabsName()}
                     disabled={true}

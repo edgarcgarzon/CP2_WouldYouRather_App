@@ -37,22 +37,34 @@ export class NewQuestion extends Component {
     super(props)
     this.state={
       optionOne:'',
-      optionTwo:''
+      optionTwo:'',
+      buttonDisable:true
     }
   }
 
   handleOption = (option, value) =>{
-    this.setState({[option]:value})
+    this.setState((state)=>({
+      [option]: value,
+      buttonDisable: state.optionOne === '' || state.optionTwo === ''
+    }))
   }
 
   onSubmit = () => {
-    this.props.dispatch(handleAddQuestion(this.state.optionOne, this.state.optionTwo, this.props.authedUser))
-    this.props.history.push(`/`)
+    this.setState({buttonDisable:true})
+    this.props.dispatch(handleAddQuestion(
+        this.state.optionOne, 
+        this.state.optionTwo, 
+        this.props.authedUser, 
+        ()=>{
+          console.log("callback")
+          this.props.history.push(`/`)
+        }
+    ))
+    
   }
 
   render() {
     const { classes } = this.props
-    const buttonDisable = this.state.optionOne === '' || this.state.optionTwo === ''
 
     return (
       <Grid
@@ -100,7 +112,7 @@ export class NewQuestion extends Component {
                 size={'medium'} 
                 style={{ marginTop: 20 }} 
                 onClick={this.onSubmit}
-                disabled={buttonDisable}>
+                disabled={this.state.buttonDisable}>
                 Submit
               </Button>
             </CardContent>

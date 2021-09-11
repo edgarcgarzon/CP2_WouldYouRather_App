@@ -17,17 +17,22 @@ export class Login extends Component {
     constructor(props){
         super(props)
         this.state={
-            logUserReq:''
+            logUserReq:'',
+            submitDisable:true
         }
     }
 
     handleChange = (event) => {
-        this.setState({logUserReq:event.target.value})
+        this.setState({
+            logUserReq:event.target.value,
+            submitDisable:false
+        })
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.dispatch(handleSetAuthedUser(this.state.logUserReq))
+        this.setState({submitDisable:true})
     }
 
     render() {
@@ -84,6 +89,7 @@ export class Login extends Component {
                                                     color="primary"
                                                     type="submit"
                                                     className="button-block"
+                                                    disabled={this.state.submitDisable}
                                                 >
                                                     Submit
                                                 </Button>

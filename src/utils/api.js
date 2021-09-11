@@ -18,7 +18,7 @@ export function getInitialData () {
 //simulate an API log-in service
 export function logIn(id){
   return new Promise((res, rej) =>{
-    setTimeout(() => res(id), 1000)
+    setTimeout(() => res(id), 2000)
   })
 }
 
