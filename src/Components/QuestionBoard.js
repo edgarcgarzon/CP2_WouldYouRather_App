@@ -55,17 +55,19 @@ export class QuestionBoard extends Component {
           alignItems="center"
           justifyContent="center"
         >
-          {questions.map((question) => {
+          {questions
+            .sort((a,b) => b.timestamp - a.timestamp)
+            .map((question) => {
 
-            const displayQuestion = this.state.tab == "Answered Questions"
-              ? this.questionAnswered(question, this.props.authedUser)
-              : !this.questionAnswered(question, this.props.authedUser)
-            return (
-              displayQuestion && (
-                <Grid item key={question.id + 1}>
-                  <QuestionBoardItem key={question.id} question={question} user={this.props.users[question.author]} viewPull={this.viewPull} />
-                </Grid>)
-            )
+              const displayQuestion = this.state.tab == "Answered Questions"
+                ? this.questionAnswered(question, this.props.authedUser)
+                : !this.questionAnswered(question, this.props.authedUser)
+              return (
+                displayQuestion && (
+                  <Grid item key={question.id + 1}>
+                    <QuestionBoardItem key={question.id} question={question} user={this.props.users[question.author]} viewPull={this.viewPull} />
+                  </Grid>)
+              )
           })}
 
         </Grid>
