@@ -20,6 +20,7 @@ import {
   LinearProgress,
   Grid
 } from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { handleAddAnswer } from '../actions/share';
 
 
@@ -68,6 +69,23 @@ function LinearProgressWithLabel(props) {
   );
 }
 
+function AnswerStats(answerText, votes, totalVotes, selected){
+  return(
+    <div>
+      <div style={{display:"flex", flexDirection:"row"}}>
+        <Typography variant="body1" color="textPrimary">
+          {answerText}
+        </Typography>
+        {selected && (<CheckCircleIcon color="primary" style={{marginLeft:5}}/>)}
+      </div>
+    <LinearProgressWithLabel value={votes*100/totalVotes} style={{ height: 10, borderRadius: 5, }} />
+    <Typography variant="body2" color="textSecondary">
+      {`${votes} of out ${totalVotes} votes`}
+    </Typography>
+  </div>
+  )
+}
+
 export class Question extends Component {
 
   constructor(props) {
@@ -89,6 +107,12 @@ export class Question extends Component {
   render() {
 
     const { user, question, authedUser } = this.props
+
+
+    if(question === undefined){
+      return <Redirect to='/404' />    
+    }
+
     let stats = {}
     if (this.props.questionAnswered) {
       stats["questionOneVotes"] = question.optionOne.votes.length
@@ -96,10 +120,7 @@ export class Question extends Component {
       stats["QuestionTotal"] = stats.questionOneVotes + stats.questionTwoVotes
       stats["questionOneVotesPerc"] = (stats.questionOneVotes / stats.QuestionTotal) * 100
       stats["questionTwoVotesPerc"] = (stats.questionTwoVotes / stats.QuestionTotal) * 100
-    }
-
-    if(question === undefined){
-      return <Redirect to='/404' />    
+      stats["answer"] = question.optionOne.votes.includes(authedUser)? 1 : 2
     }
 
     return (
@@ -153,20 +174,8 @@ export class Question extends Component {
                     </Button>
                   </FormControl>
                   : <div>
-                    <Typography variant="body1" color="textPrimary">
-                      {`${question.optionOne.text}`}
-                    </Typography>
-                    <LinearProgressWithLabel value={stats.questionOneVotesPerc} style={{ height: 10, borderRadius: 5, }} />
-                    <Typography variant="body2" color="textSecondary">
-                      {`${stats.questionOneVotes} of out ${stats.QuestionTotal} votes`}
-                    </Typography>
-                    <Typography variant="body1" color="textPrimary">
-                      {`${question.optionTwo.text}`}
-                    </Typography>
-                    <LinearProgressWithLabel value={stats.questionTwoVotesPerc} style={{ height: 10, borderRadius: 5, }} />
-                    <Typography variant="body2" color="textSecondary">
-                      {`${stats.questionTwoVotes} of out ${stats.QuestionTotal} votes`}
-                    </Typography>
+                    {AnswerStats(question.optionOne.text, stats.questionOneVotes, stats.QuestionTotal, stats.answer === 1)}
+                    {AnswerStats(question.optionTwo.text, stats.questionTwoVotes, stats.QuestionTotal, stats.answer === 2)}
                   </div>}
               </CardContent>
             </div>
