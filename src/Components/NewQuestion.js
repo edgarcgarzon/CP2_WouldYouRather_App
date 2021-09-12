@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import compose from 'recompose/compose'
 import {
   TextField,
@@ -56,7 +56,6 @@ export class NewQuestion extends Component {
         this.state.optionTwo, 
         this.props.authedUser, 
         ()=>{
-          console.log("callback")
           this.props.history.push(`/`)
         }
     ))
@@ -64,7 +63,6 @@ export class NewQuestion extends Component {
   }
 
   render() {
-    const { classes } = this.props
 
     return (
       <Grid
@@ -72,7 +70,7 @@ export class NewQuestion extends Component {
         spacing={0}
         direction="column"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
       >
         <Grid item xs={6}>
           <Card className={this.props.classes.root}>

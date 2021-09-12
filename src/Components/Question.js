@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, Redirect} from "react-router-dom";
@@ -129,7 +128,7 @@ export class Question extends Component {
         spacing={0}
         direction="column"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
       >
         <Grid item xs={6}>
           <Card className={this.props.classes.root}>
@@ -192,7 +191,6 @@ const mapStateToProps = ({ questions, users, authedUser }, props) => {
   if(questions[id]===undefined){
     return{}
   }
-  console.log(questions[id])
 
   return {
     question: questions[id],

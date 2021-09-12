@@ -59,7 +59,7 @@ export class QuestionBoard extends Component {
             .sort((a,b) => b.timestamp - a.timestamp)
             .map((question) => {
 
-              const displayQuestion = this.state.tab == "Answered Questions"
+              const displayQuestion = this.state.tab === "Answered Questions"
                 ? this.questionAnswered(question, this.props.authedUser)
                 : !this.questionAnswered(question, this.props.authedUser)
               return (

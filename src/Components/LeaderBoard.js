@@ -1,4 +1,3 @@
-import { FaceSharp } from '@material-ui/icons'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionStats from './QuestionStats'

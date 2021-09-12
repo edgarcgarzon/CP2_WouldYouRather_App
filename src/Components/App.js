@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/share';
 import Home from './Home'
 import Question from './Question'
-import QuestionBoard from './QuestionBoard'
 import Nav from './Nav'
 import NewQuestion from './NewQuestion';
 import Login from './Login';

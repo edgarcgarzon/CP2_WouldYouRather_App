@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-import compose from 'recompose/compose'
 import {
   Avatar,
   Card,
@@ -71,7 +69,7 @@ export class UserStats extends Component {
         spacing={0}
         direction="column"
         alignItems="center"
-        justify="center"
+        justifyContent="center"
       >
         <Grid item xs={6}>
           <Card className={this.props.classes.root}>
