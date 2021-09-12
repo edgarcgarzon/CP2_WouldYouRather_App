@@ -30,7 +30,7 @@ const useStyles = (theme) => ({
 
 class Nav extends Component {
 
-    tabsValues = ['/', '/newquestion', '/leaderboard']
+    tabsValues = ['/', '/add', '/leaderboard']
 
     filterTabsName = () => {
         return (this.props.authedUser === null)
@@ -79,7 +79,7 @@ class Nav extends Component {
                     centered
                 >
                     <Tab label="Home" component={Link} to="/" value="/" disabled={disabledTab}/>
-                    <Tab label="New Question" component={Link} to="/newquestion" value="/newquestion" disabled={disabledTab}/>
+                    <Tab label="New Question" component={Link} to="/add" value="/add" disabled={disabledTab}/>
                     <Tab label="Leaderboard" component={Link} to="/leaderboard" value="/leaderboard" disabled={disabledTab}/>
                 </Tabs>
             </div>
