@@ -39,7 +39,7 @@ export class Login extends Component {
 
         
         if(this.props.authedUser){
-            return <Redirect to='/' />    }
+            return <Redirect to={this.props.location.pathname} />    }
 
         return (
             <div>

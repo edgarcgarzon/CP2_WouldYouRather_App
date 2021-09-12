@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect} from "react-router-dom";
 import compose from 'recompose/compose'
 import {
   Box,
@@ -98,6 +98,10 @@ export class Question extends Component {
       stats["questionTwoVotesPerc"] = (stats.questionTwoVotes / stats.QuestionTotal) * 100
     }
 
+    if(question === undefined){
+      return <Redirect to='/404' />    
+    }
+
     return (
       <Grid
         container
@@ -175,9 +179,15 @@ export class Question extends Component {
 
 const mapStateToProps = ({ questions, users, authedUser }, props) => {
   const { id } = props.match.params
+
+  if(questions[id]===undefined){
+    return{}
+  }
+  console.log(questions[id])
+
   return {
     question: questions[id],
-    user: users[questions[id].author],
+    user: users[questions[id].author] ,
     questionAnswered: users[authedUser].answers[id] !== undefined,
     authedUser
   }
